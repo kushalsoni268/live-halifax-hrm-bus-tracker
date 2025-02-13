@@ -5,9 +5,12 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-L.marker([44.650690, -63.596537]).addTo(map)
-    .bindPopup('This is a sample popup. You can put any html structure in this including extra bus data. You can also swap this icon out for a custom icon. A png file has been provided for you to use if you wish.')
-    .openPopup();
+const busIcon = L.icon({
+    iconUrl: 'bus.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 16],
+    popupAnchor: [0, -16]
+});
 
 // Fetch real-time transit data
 async function fetchBusData() {
@@ -17,18 +20,18 @@ async function fetchBusData() {
         const data = await response.json();
 
         // Filter buses on routes 1-10
-        const filteredBuses = data.entity.filter(bus => {
-            const routeId = parseInt(bus.vehicle.trip.routeId, 10);
-            return routeId >= 1 && routeId <= 10;
-        });
+        // const filteredBuses = data.entity.filter(bus => {
+        //     const routeId = parseInt(bus.vehicle.trip.routeId, 10);
+        //     return routeId >= 1 && routeId <= 10;
+        // });
 
         // Buses on all routes
-        // const allRouteBuses = data.entity;
+        const allRouteBuses = data.entity;
 
         // Convert data to GeoJSON format
         const geoJsonData = {
             type: 'FeatureCollection',
-            features: filteredBuses.map(bus => {
+            features: allRouteBuses.map(bus => {
                 return {
                     type: 'Feature',
                     geometry: {
@@ -46,8 +49,37 @@ async function fetchBusData() {
             })
         };
 
-        console.log("geoJsonData: ", geoJsonData);    
+        // Update the map
+        updateMapWithBusMarkers(geoJsonData);
     } catch (error) {
         console.error('Error fetching bus data:', error);
     }
 }
+
+let busMarkersLayer;
+
+// Function to update the map
+function updateMapWithBusMarkers(geoJsonData) {
+    // Remove previous markers
+    if (busMarkersLayer) {
+        map.removeLayer(busMarkersLayer);
+    }
+
+    // Add new markers
+    busMarkersLayer = L.geoJSON(geoJsonData, {
+        pointToLayer: function (feature, latlng) {
+            const marker = L.marker(latlng, {
+                icon: busIcon,
+                rotationAngle: feature.properties.bearing
+            });
+            marker.bindPopup(`
+                <strong>Bus:</strong> ${feature.properties.label}<br>
+                <strong>Route:</strong> ${feature.properties.routeId}<br>
+                <strong>Speed:</strong> ${feature.properties.speed.toFixed(2)} km/h
+            `);
+            return marker;
+        }
+    }).addTo(map);
+}
+
+fetchBusData();
