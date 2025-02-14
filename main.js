@@ -82,4 +82,11 @@ function updateMapWithBusMarkers(geoJsonData) {
     }).addTo(map);
 }
 
-fetchBusData();
+// Auto-refresh functionality
+function startAutoRefresh() {
+    fetchBusData();
+    setInterval(fetchBusData, 30000); // Refresh data every 30 seconds
+}
+
+// Start auto-refresh when the page loads
+document.addEventListener('DOMContentLoaded', startAutoRefresh);
