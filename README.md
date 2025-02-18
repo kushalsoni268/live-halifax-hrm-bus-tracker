@@ -1,37 +1,23 @@
 # Live Halifax HRM Bus Tracker
 
-## Table of Contents
+Live Halifax HRM Bus Tracker is a real-time web application that shows the current positions of Halifax transit buses on an interactive map, providing live updates and route filtering for an enhanced transit tracking experience.
 
-- [About the Project](#description)
-  * [Description](#description)
-  * [Tech Stack](#tech-Stack)
-- [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
-  * [Run Locally](#run-locally)
+## 📋 Table of Contents
 
-## Description
+- [About](#beginner-about)
+- [Tech Stack](#beginner-about)
 
-Live Halifax HRM Bus Tracker is a real-time web application that displays the current location of Halifax transit buses on an interactive map. It fetches live transit data, filters routes, and plots buses with directional markers, auto-refreshing every 30 seconds for an up-to-date view of transit activity.
+##  :beginner: About
 
-## Tech Stack
+The Live Halifax HRM Bus Tracker is a web app that displays real-time bus locations in Halifax Regional Municipality (HRM) on routes 1-10 using an interactive map. Key features include:
+
+- **Real-Time Tracking:** Fetches live bus data from Halifax Transit’s API, updating every 30 seconds.
+- **GeoJSON Integration:** Transforms bus data into GeoJSON for efficient marker plotting on the map.
+- **Custom Icons & Rotation:** Displays buses with custom icons that rotate based on their direction.
+- **Automatic Refresh:** Bus markers update in real time without page reloads.
+
+## 🛠️ Tech Stack
 
 * HTML
 * CSS
 * Javascript
-
-## Getting Started
-
-### Prerequisites
-
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
-
-### Installation
-
-* How/where to download your program
-* Any modifications needed to be made to files/folders
-
-### Run Locally
-
-* How to run the program
