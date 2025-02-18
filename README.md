@@ -5,7 +5,7 @@ Live Halifax HRM Bus Tracker is a real-time web application that shows the curre
 ## 📋 Table of Contents
 
 - [About](#beginner-about)
-- [Tech Stack](#🛠️-tech-stack)
+- [Tech Stack](#-tech-stack)
 
 ##  :beginner: About
 
