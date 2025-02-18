@@ -7,7 +7,7 @@ Live Halifax HRM Bus Tracker is a real-time web application that shows the curre
 - [About](#beginner-about)
 - [Tech Stack](#tech-stack)
 
-##  :beginner: About
+##  :beginner: About {#beginner-about}
 
 The Live Halifax HRM Bus Tracker is a web app that displays real-time bus locations in Halifax Regional Municipality (HRM) on routes 1-10 using an interactive map. Key features include:
 
@@ -16,7 +16,7 @@ The Live Halifax HRM Bus Tracker is a web app that displays real-time bus locati
 - **Custom Icons & Rotation:** Displays buses with custom icons that rotate based on their direction.
 - **Automatic Refresh:** Bus markers update in real time without page reloads.
 
-## :🛠️: Tech Stack
+## 🛠️ Tech Stack {#tech-stack}
 
 * HTML
 * CSS
